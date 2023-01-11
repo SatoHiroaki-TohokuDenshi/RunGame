@@ -1,6 +1,4 @@
-﻿# include <Siv3D.hpp> // OpenSiv3D v0.6.3
-
-
+﻿# include "SceneBase.h"
 
 void Main()
 {
