@@ -12,6 +12,7 @@ enum class State
 // 共有するデータ
 struct GameData
 {
+	int score;
 };
 
 using App = SceneManager<State, GameData>;
