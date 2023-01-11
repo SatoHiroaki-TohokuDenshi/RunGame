@@ -13,4 +13,9 @@ public:
 	void draw() const override;
 
 private:
+	const Texture RankS_;
+	const Texture RankA_;
+	const Texture RankB_;
+	const Texture RankC_;
+	const Texture RankD_;
 };

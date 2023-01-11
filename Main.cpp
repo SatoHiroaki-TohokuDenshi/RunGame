@@ -3,6 +3,7 @@
 # include "PlayScene.h"
 # include "ScoreScene.h"
 
+
 void Main()
 {
 	App manager;
