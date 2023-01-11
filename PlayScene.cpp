@@ -1,7 +1,7 @@
 ﻿# include "PlayScene.h"
 
 Play::Play(const InitData& init)
-	: IScene{ init } {}
+	: IScene{ init }, PlayerChar_{ U"Images/Man_Run1.png" } {}
 
 void Play::update()
 {
@@ -9,5 +9,5 @@ void Play::update()
 
 void Play::draw() const
 {
-	PlayerChar.draw(40, 20);
+	PlayerChar_.draw(40, 20);
 }

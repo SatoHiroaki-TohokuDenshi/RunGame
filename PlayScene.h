@@ -13,5 +13,5 @@ public:
 	void draw() const override;
 
 private:
-	const Texture PlayerChar{ U"./Images/Life.png" };
+	const Texture PlayerChar_;
 };
