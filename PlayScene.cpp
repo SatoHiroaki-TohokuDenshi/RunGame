@@ -48,8 +48,8 @@ void Play::update()
 	Sec_ = 30 - Stopwatch_.s();
 	if (Sec_ == 0)
 	{
-		changeScene(State::Score);
 		getData().score += 150;
+		changeScene(State::Score);
 	}
 
 	//移動処理
@@ -87,6 +87,7 @@ void Play::update()
 		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
 		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
 		{
+			getData().score += (int)MoveDist_;
 			changeScene(State::Score);
 		}
 	}

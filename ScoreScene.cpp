@@ -28,17 +28,17 @@ void Score::update()
 void Score::draw() const
 {
 	//点数に沿ってランクS～Dを表示させる
-	if (PlayScore_ >= 500)
+	if (PlayScore_ >= 300)
 	{
 		RankS_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(10, 10);
 	}
-	else if (PlayScore_ >= 350)
+	else if (PlayScore_ >= 250)
 	{
 		RankA_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"素晴らしい出来でした").drawAt(EvaluationPos_, ColorF{ 0.25 });
 	}
-	else if (PlayScore_ >= 200)
+	else if (PlayScore_ >= 150)
 	{
 		RankB_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"悪くありませんでした").drawAt(EvaluationPos_, ColorF{ 0.25 });
