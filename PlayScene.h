@@ -30,6 +30,8 @@ private:
 	double Move_;						//ジャンプの移動量
 	const Texture Life_;			//ライフ
 	Vec2 LifePos_;					//ライフの座標
+	const Texture Obstacle_;       //障害物
+	Vec2 ObstaclePos_[4];
 
 	//level3
 	const Texture ItemMoney_;		//お金

@@ -8,12 +8,19 @@ Play::Play(const InitData& init)
 	 PlayerChar_{ U"Images/Man_Run1.png", TextureDesc::Mipped },
 	 Tree_{ U"Images/tree.png", TextureDesc::Mipped },
 	 ItemMoney_{ U"Images/money_item.png", TextureDesc::Mipped },
-	 Life_{ U"Images/Life.png", TextureDesc::Mipped }
+	 Life_{ U"Images/Life.png", TextureDesc::Mipped },
+	Obstacle_{U"Images/cardboard_障害物.png",TextureDesc::Mipped }
 {
 	TreePos_[0] = Vec2(100, 300);
 	TreePos_[1] = Vec2(400, 300);
 	TreePos_[2] = Vec2(700, 300);
+	ObstaclePos_[0] = Vec2{ 280,450 };
+	ObstaclePos_[1] = Vec2{ 580,450 };
+	ObstaclePos_[2] = Vec2{ 880,450 };
+	ObstaclePos_[3] = Vec2{ 1180,450 };
+	
 }
+
 
 void Play::update()
 {
@@ -58,6 +65,18 @@ void Play::update()
 		}
 	}
 
+	for (int i = 0; i < 4; i++)
+	{
+		if (ObstaclePos_[i].x < -100)
+		{
+			ObstaclePos_[i].x = 1300;
+		}
+		else {
+			ObstaclePos_[i].x -= Velocity_;
+		}
+	}
+    
+
 	if (Sec_ % 5 == 0)
 	{
 		Velocity_ += 0.001;
@@ -77,4 +96,9 @@ void Play::draw() const
 	PlayerChar_.scaled(0.3).draw(PlayerPos_);
 
 	ItemMoney_.scaled(0.3).drawAt(MoneyPos_);
+
+	for (int i = 0; i < 4; i++)
+	{
+		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
+	}
 }
