@@ -9,7 +9,7 @@ Score::Score(const InitData& init)
 void Score::update()
 {
 
-	if (300 >= 500)
+	if (400 >= 500)
 	{
 		RankS_.draw(100, 100);
 	}
