@@ -22,4 +22,7 @@ private:
 	const Vec2 EvaluationPos_;
 
 	int PlayScore_;
+
+	Rect m_titleButton{ Arg::center = Scene::Center().movedBy(0, 200), 300, 60 };
+	Transition m_startTransition{ 0.4s, 0.2s };
 };
