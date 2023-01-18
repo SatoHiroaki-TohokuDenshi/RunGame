@@ -12,10 +12,10 @@ Play::Play(const InitData& init)
 	TreePos_[0] = Vec2(100, 300);
 	TreePos_[1] = Vec2(400, 300);
 	TreePos_[2] = Vec2(700, 300);
-	ObstaclePos_[0] = Vec2{ 280,450 };
-	ObstaclePos_[1] = Vec2{ 580,450 };
-	ObstaclePos_[2] = Vec2{ 880,450 };
-	ObstaclePos_[3] = Vec2{ 1180,450 };
+	ObstaclePos_[0] = Vec2{ 480,450 };
+	ObstaclePos_[1] = Vec2{ 780,450 };
+	ObstaclePos_[2] = Vec2{ 1080,450 };
+	ObstaclePos_[3] = Vec2{ 1380,450 };
 	
 }
 
@@ -76,13 +76,25 @@ void Play::update()
 		}
 	}
 
+	MoveDist_ += Velocity_ / 200;
+
 	//当たり判定の処理（仮）
-	Rect(PlayerPos_.x + 40.0, PlayerPos_.y + 20.0, 40, 80).draw();
+	const Rect Player(PlayerPos_.x + 40, PlayerPos_.y + 20, 40, 80);
+	Player.draw();
+	for (int i = 0; i < 4; i++)
+	{
+		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
+		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
+		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
+		{
+			changeScene(State::Score);
+		}
+	}
 
 	
 	if (Sec_ % 5 == 0)
 	{
-		Velocity_ += 0.003;
+		Velocity_ += 0.004;
 	}
 }
 
@@ -90,25 +102,23 @@ void Play::draw() const
 {
 	BackGround_.draw(0, 0);
 
-	FontAsset(U"GameScore")(Sec_).draw(10, 10);
+	FontAsset(U"GameScore")(U"残り時間：").draw(10, 10);
+	FontAsset(U"GameScore")(Sec_).draw(150, 10);
+
+	FontAsset(U"GameScore")((int)MoveDist_).draw(300, 10);
+	FontAsset(U"GameScore")(U"ｍ走ったよ").draw(350, 10);
 
 	for (int i = 0; i < 3; i++)
 	{
 		Tree_.scaled(0.3).drawAt(TreePos_[i]);
 	}
 	PlayerChar_.scaled(0.3).draw(PlayerPos_);
-	const Rect Player(PlayerPos_.x + 40, PlayerPos_.y + 20, 40, 80);
-	Player.draw();
+	
 
 	ItemMoney_.scaled(0.3).drawAt(MoneyPos_);
 
 	for (int i = 0; i < 4; i++)
 	{
 		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
-		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
-		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
-		{
-			Print << U"ぶつかった";
-		}
 	}
 }

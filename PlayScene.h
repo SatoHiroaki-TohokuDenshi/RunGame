@@ -17,7 +17,7 @@ private:
 	Stopwatch Stopwatch_{ StartImmediately::Yes };			//経過時間
 	int Sec_;						//残り時間
 	double Velocity_;				//移動量
-	int MoveDist_;					//移動距離
+	double MoveDist_;					//移動距離
 	const Texture BackGround_;		//背景
 	const Texture Tree_;			//背景の木
 	Vec2 TreePos_[3];
