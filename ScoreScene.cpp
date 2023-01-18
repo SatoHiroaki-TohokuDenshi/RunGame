@@ -31,7 +31,7 @@ void Score::draw() const
 	if (PlayScore_ >= 300)
 	{
 		RankS_.drawAt(RankPos_);
-		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(10, 10);
+		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(EvaluationPos_);
 	}
 	else if (PlayScore_ >= 250)
 	{

@@ -2,7 +2,7 @@
 
 Play::Play(const InitData& init)
 	: IScene{ init }, GA_(0.5), Move_(0), Velocity_(3), MoveDist_(0),
-	 PlayerPos_(40, 350), MoneyPos_(300, 450),Sec_(30),
+	 PlayerPos_(40, 350),Sec_(30),
 	 BackGround_{ U"Images/Field.png", TextureDesc::Mipped },
 	 PlayerChar_{ U"Images/Man_Run1.png", TextureDesc::Mipped },
 	 Tree_{ U"Images/tree.png", TextureDesc::Mipped },
@@ -16,7 +16,10 @@ Play::Play(const InitData& init)
 	ObstaclePos_[1] = Vec2{ 780,450 };
 	ObstaclePos_[2] = Vec2{ 1080,450 };
 	ObstaclePos_[3] = Vec2{ 1380,450 };
-	
+	for (int i = 0; i < 5; i++)
+	{
+		MoneyPos_[i] = Vec2(rand() % 800 + 100, rand() % 350 + 100);
+	}
 }
 
 
@@ -76,19 +79,42 @@ void Play::update()
 		}
 	}
 
+	for (int i = 0; i < 5; i++)
+	{
+		if (MoneyPos_[i].x < -100)
+		{
+			MoneyPos_[i].x = 1000;
+			MoneyPos_[i].y = rand() % 350 + 100;
+		}
+		else {
+			MoneyPos_[i].x -= Velocity_;
+		}
+	}
+
 	MoveDist_ += Velocity_ / 200;
+
 
 	//当たり判定の処理（仮）
 	const Rect Player(PlayerPos_.x + 40, PlayerPos_.y + 20, 40, 80);
 	Player.draw();
 	for (int i = 0; i < 4; i++)
 	{
-		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
 		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
 		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
 		{
 			getData().score += (int)MoveDist_;
 			changeScene(State::Score);
+		}
+	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).draw();
+		if (Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).intersects(Player))
+		{
+			getData().score +=10;
+			MoneyPos_[i].x = 1000;
+			MoneyPos_[i].y = rand() % 350 + 100;
 		}
 	}
 
@@ -115,8 +141,10 @@ void Play::draw() const
 	}
 	PlayerChar_.scaled(0.3).draw(PlayerPos_);
 	
-
-	ItemMoney_.scaled(0.3).drawAt(MoneyPos_);
+	for (int i = 0; i < 5; i++)
+	{
+		ItemMoney_.scaled(0.3).drawAt(MoneyPos_[i]);
+	}
 
 	for (int i = 0; i < 4; i++)
 	{

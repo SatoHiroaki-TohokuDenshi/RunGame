@@ -32,5 +32,5 @@ private:
 
 	//level3
 	const Texture ItemMoney_;		//お金
-	Vec2 MoneyPos_;					//お金の座標
+	Vec2 MoneyPos_[5];					//お金の座標
 };
