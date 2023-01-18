@@ -79,6 +79,7 @@ void Play::update()
 	//当たり判定の処理（仮）
 	Rect(PlayerPos_.x + 40.0, PlayerPos_.y + 20.0, 40, 80).draw();
 
+	
 	if (Sec_ % 5 == 0)
 	{
 		Velocity_ += 0.003;
@@ -105,5 +106,9 @@ void Play::draw() const
 	{
 		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
 		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
+		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
+		{
+			Print << U"ぶつかった";
+		}
 	}
 }
