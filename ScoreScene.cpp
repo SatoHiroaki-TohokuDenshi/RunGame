@@ -33,17 +33,17 @@ void Score::draw() const
 		RankS_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(10, 10);
 	}
-	else if (PlayScore_ >= 400)
+	else if (PlayScore_ >= 350)
 	{
 		RankA_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"素晴らしい出来でした").drawAt(EvaluationPos_, ColorF{ 0.25 });
 	}
-	else if (PlayScore_ >= 300)
+	else if (PlayScore_ >= 200)
 	{
 		RankB_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"悪くありませんでした").drawAt(EvaluationPos_, ColorF{ 0.25 });
 	}
-	else if (PlayScore_ >= 200)
+	else if (PlayScore_ >= 50)
 	{
 		RankC_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"もっと頑張りましょう").drawAt(EvaluationPos_, ColorF{ 0.25 });
