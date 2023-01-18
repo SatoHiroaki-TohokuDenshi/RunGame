@@ -18,4 +18,8 @@ private:
 	const Texture RankB_;
 	const Texture RankC_;
 	const Texture RankD_;
+	const Vec2 RankPos_;
+	const Vec2 EvaluationPos_;
+
+	int PlayScore_;
 };
