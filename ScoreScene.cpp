@@ -1,5 +1,5 @@
 ﻿# include "ScoreScene.h"
-
+#include "stdafx.h"
 Score::Score(const InitData& init)
 	: IScene{ init }, RankS_{ U"Images/s_score.png" }, RankA_{ U"Images/a_score.png" },
 	RankB_{ U"Images/b_score.png" }, RankC_{ U"Images/c_score.png" }, RankD_{ U"Images/d_score.png" }
@@ -8,7 +8,7 @@ Score::Score(const InitData& init)
 
 void Score::update()
 {
-
+		//点数に沿ってランクS～Dを表示させる
 	if (400 >= 500)
 	{
 		RankS_.draw(100, 100);
@@ -34,5 +34,4 @@ void Score::update()
 void Score::draw() const
 {
 }
-#include "stdafx.h"
-#include "ScoreScene.h"
+
