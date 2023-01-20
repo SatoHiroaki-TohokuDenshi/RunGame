@@ -5,6 +5,7 @@ Play::Play(const InitData& init)
 	 PlayerPos_(40, 350),Sec_(30),
 	BGM_{ U"Audio/ウルトラ大掃除.mp3" },
 	 JumpSE_{U"Audio/レトロジャンプ.mp3"},
+	DieSE_{ U"Audio/チーン1.mp3" },
 	Moneyhave_{ U"Audio/コイン.mp3" },
 	 BackGround_{ U"Images/Field.png", TextureDesc::Mipped },
 	 PlayerChar_{ U"Images/Man_Run1.png", TextureDesc::Mipped },
@@ -107,6 +108,7 @@ void Play::update()
 		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
 		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
 		{
+			DieSE_.play();
 			getData().score += (int)MoveDist_;
 			changeScene(State::Score);
 		}

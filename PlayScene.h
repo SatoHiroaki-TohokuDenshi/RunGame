@@ -31,6 +31,7 @@ private:
 	const Audio JumpSE_;			//ジャンプの効果音
 	const Texture Obstacle_;		//障害物
 	Vec2 ObstaclePos_[4];
+	const Audio DieSE_;
 
 	//level3
 	const Texture ItemMoney_;		//お金
