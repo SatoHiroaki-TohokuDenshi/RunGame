@@ -26,7 +26,9 @@ private:
 
 	//level2
 	const double GA_;				//重力加速度
+	const Audio BGM_;
 	double Move_;					//ジャンプの移動量
+	const Audio JumpSE_;			//ジャンプの効果音
 	const Texture Obstacle_;		//障害物
 	Vec2 ObstaclePos_[4];
 

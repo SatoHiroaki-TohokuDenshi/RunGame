@@ -3,6 +3,8 @@
 Play::Play(const InitData& init)
 	: IScene{ init }, GA_(0.5), Move_(0), Velocity_(3), MoveDist_(0),
 	 PlayerPos_(40, 350),Sec_(30),
+	BGM_{ U"Audio/ウルトラ大掃除.mp3" },
+	 JumpSE_{U"Audio/レトロジャンプ.mp3"},
 	 BackGround_{ U"Images/Field.png", TextureDesc::Mipped },
 	 PlayerChar_{ U"Images/Man_Run1.png", TextureDesc::Mipped },
 	 Tree_{ U"Images/tree.png", TextureDesc::Mipped },
@@ -20,6 +22,7 @@ Play::Play(const InitData& init)
 	{
 		MoneyPos_[i] = Vec2(rand() % 800 + 100, rand() % 350 + 100);
 	}
+	BGM_.play();
 }
 
 
@@ -36,6 +39,7 @@ void Play::update()
 	{
 		if (KeySpace.down())
 		{
+			JumpSE_.play();
 			Move_ = -17;
 			PlayerPos_.y += Move_;
 		}
