@@ -13,6 +13,7 @@ enum class State
 struct GameData
 {
 	int score;
+	bool RankSE;
 };
 
 using App = SceneManager<State, GameData>;

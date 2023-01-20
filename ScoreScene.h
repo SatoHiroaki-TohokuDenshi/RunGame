@@ -21,6 +21,10 @@ private:
 	const Vec2 RankPos_;
 	const Vec2 EvaluationPos_;
 
+	const Audio RankUpper_;
+	const Audio RankMiddle_;
+	const Audio RankLower_;
+
 	int PlayScore_;
 
 	Rect m_titleButton{ Arg::center = Scene::Center().movedBy(0, 200), 300, 60 };
