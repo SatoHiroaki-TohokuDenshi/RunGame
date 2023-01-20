@@ -5,6 +5,7 @@ Play::Play(const InitData& init)
 	 PlayerPos_(40, 350),Sec_(30),
 	BGM_{ U"Audio/ウルトラ大掃除.mp3" },
 	 JumpSE_{U"Audio/レトロジャンプ.mp3"},
+	Moneyhave_{ U"Audio/コイン.mp3" },
 	 BackGround_{ U"Images/Field.png", TextureDesc::Mipped },
 	 PlayerChar_{ U"Images/Man_Run1.png", TextureDesc::Mipped },
 	 Tree_{ U"Images/tree.png", TextureDesc::Mipped },
@@ -116,6 +117,7 @@ void Play::update()
 		Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).draw();
 		if (Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).intersects(Player))
 		{
+			Moneyhave_.play();
 			getData().score +=10;
 			MoneyPos_[i].x = 1000;
 			MoneyPos_[i].y = rand() % 350 + 100;

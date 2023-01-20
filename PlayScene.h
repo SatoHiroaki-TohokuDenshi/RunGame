@@ -34,5 +34,6 @@ private:
 
 	//level3
 	const Texture ItemMoney_;		//お金
+	const Audio Moneyhave_;
 	Vec2 MoneyPos_[5];					//お金の座標
 };
