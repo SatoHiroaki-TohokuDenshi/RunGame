@@ -2,7 +2,7 @@
 
 Score::Score(const InitData& init)
 	: IScene{ init }, PlayScore_(0), RankPos_(400, 250), EvaluationPos_(400, 350),
-	RankS_{ U"Images/s_score.png" }, RankA_{ U"Images/a_score.png" },
+	RankSS_{ U"Images/s+_score.png" }, RankS_{ U"Images/s_score.png" }, RankA_{ U"Images/a_score.png" },
 	RankB_{ U"Images/b_score.png" }, RankC_{ U"Images/c_score.png" }, RankD_{ U"Images/d_score.png" },
 	RankUpper_{U"Audio/Phrase02-1.mp3"}, RankMiddle_{U"Audio/Phrase03-1.mp3"}, RankLower_{U"Audio/Phrase04-1.mp3"}
 {
@@ -21,15 +21,25 @@ void Score::update()
 
 	if (m_titleButton.leftClicked())
 	{
-		// ゲームシーンへ
+		// タイトルシーンへ
 		changeScene(State::Title);
 	}
 }
 
 void Score::draw() const
 {
-	//点数に沿ってランクS～Dを表示させる
-	if (PlayScore_ >= 300)
+	//点数に沿ってランクSS～Dを表示させる
+	if (PlayScore_ >= 9999)
+	{
+		RankSS_.drawAt(RankPos_);
+		FontAsset(U"ScoreScene")(U"完走おめでとう！").drawAt(EvaluationPos_);
+		if (getData().RankSE)
+		{
+			RankUpper_.play();
+			getData().RankSE = false;
+		}
+	}
+	else if (PlayScore_ >= 300)
 	{
 		RankS_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(EvaluationPos_);
