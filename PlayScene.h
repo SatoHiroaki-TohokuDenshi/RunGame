@@ -26,15 +26,15 @@ private:
 
 	//level2
 	const double GA_;				//重力加速度
-	const Audio BGM_;
+	const Audio BGM_;               //走ってる時のBGM
 	double Move_;					//ジャンプの移動量
 	const Audio JumpSE_;			//ジャンプの効果音
 	const Texture Obstacle_;		//障害物
-	Vec2 ObstaclePos_[4];
-	const Audio DieSE_;
+	Vec2 ObstaclePos_[4];          //障害物の位置
+	const Audio DieSE_;				//死んだときの効果音
 
 	//level3
 	const Texture ItemMoney_;		//お金
-	const Audio Moneyhave_;
-	Vec2 MoneyPos_[5];					//お金の座標
+	const Audio Moneyhave_;			//お金を取得債の効果音
+	Vec2 MoneyPos_[5];				//お金の座標
 };
