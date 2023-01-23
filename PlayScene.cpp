@@ -57,11 +57,12 @@ void Play::update()
 	Sec_ = 30 - Stopwatch_.s();
 	if (Sec_ == 0)
 	{
-		getData().score += 150;
+		getData().score += 9999;
 		changeScene(State::Score);
 	}
 
 	//移動処理
+	//背景
 	for (int i = 0; i < 3; i++)
 	{
 		if (TreePos_[i].x < -80)
@@ -72,7 +73,7 @@ void Play::update()
 			TreePos_[i].x -= Velocity_;
 		}
 	}
-
+	//障害物
 	for (int i = 0; i < 4; i++)
 	{
 		if (ObstaclePos_[i].x < -100)
@@ -84,7 +85,7 @@ void Play::update()
 			ObstaclePos_[i].x -= Velocity_;
 		}
 	}
-
+	//アイテム
 	for (int i = 0; i < 5; i++)
 	{
 		if (MoneyPos_[i].x < -100)
@@ -97,12 +98,14 @@ void Play::update()
 		}
 	}
 
+	//走行距離
 	MoveDist_ += Velocity_ / 200;
 
 
-	//当たり判定の処理（仮）
+	//当たり判定の処理
 	const Rect Player(PlayerPos_.x + 40, PlayerPos_.y + 20, 40, 80);
-	Player.draw();
+
+	//障害物との判定
 	for (int i = 0; i < 4; i++)
 	{
 		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
@@ -113,7 +116,7 @@ void Play::update()
 			changeScene(State::Score);
 		}
 	}
-
+	//アイテムとの判定
 	for (int i = 0; i < 5; i++)
 	{
 		Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).draw();
@@ -126,7 +129,7 @@ void Play::update()
 		}
 	}
 
-	
+	//時間経過による加速
 	if (Sec_ % 5 == 0)
 	{
 		Velocity_ += 0.004;
