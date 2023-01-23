@@ -122,7 +122,7 @@ void Play::update()
 		Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).draw();
 		if (Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).intersects(Player))
 		{
-			Moneyhave_.play();
+			Moneyhave_.playOneShot();
 			getData().score +=10;
 			MoneyPos_[i].x = 1000;
 			MoneyPos_[i].y = rand() % 350 + 100;
