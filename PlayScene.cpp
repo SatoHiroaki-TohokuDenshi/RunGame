@@ -104,7 +104,7 @@ void Play::update()
 
 
 	//当たり判定の処理
-	const Rect Player(PlayerPos_.x + 35, PlayerPos_.y + 20, 45, 80);
+	const Rect Player(PlayerPos_.x + 35, PlayerPos_.y + 20, 40, 80);
 	const Rect PlayerFoot(PlayerPos_.x + 30, PlayerPos_.y + 100, 40, 20);
 
 	//障害物との判定
@@ -170,6 +170,6 @@ void Play::draw() const
 		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
 	}
 
-	Rect(PlayerPos_.x + 35, PlayerPos_.y + 20, 45, 80).draw();
-	Rect(PlayerPos_.x + 40, PlayerPos_.y + 100, 30, 20).draw(Color(Palette::Gold));
+	//Rect(PlayerPos_.x + 35, PlayerPos_.y + 20, 40, 80).draw();
+	//Rect(PlayerPos_.x + 40, PlayerPos_.y + 100, 30, 20).draw(Color(Palette::Gold));
 }
