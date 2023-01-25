@@ -22,7 +22,7 @@ Play::Play(const InitData& init)
 	ObstaclePos_[3] = Vec2{ 1380,450 };
 	for (int i = 0; i < 5; i++)
 	{
-		MoneyPos_[i] = Vec2(rand() % 800 + 100, rand() % 350 + 100);
+		MoneyPos_[i] = Vec2(rand() % 800 + 300, rand() % 350 + 100);
 	}
 	BGM_.play();
 }
@@ -78,7 +78,7 @@ void Play::update()
 	{
 		if (ObstaclePos_[i].x < -100)
 		{
-			ObstaclePos_[i].x = 1300;
+			ObstaclePos_[i].x = 1300; rand() % 100;
 			ObstaclePos_[i].y = rand() % 400 + 70;
 		}
 		else {
@@ -145,6 +145,9 @@ void Play::draw() const
 
 	FontAsset(U"GameScore")((int)MoveDist_).draw(300, 10);
 	FontAsset(U"GameScore")(U"ｍ走ったよ").draw(350, 10);
+
+	FontAsset(U"GameScore")(U"スコア：").draw(550, 10);
+	FontAsset(U"GameScore")(getData().score).draw(670, 10);
 
 	for (int i = 0; i < 3; i++)
 	{
