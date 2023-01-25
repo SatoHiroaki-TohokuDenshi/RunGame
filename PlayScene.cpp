@@ -57,7 +57,8 @@ void Play::update()
 	Sec_ = 30 - Stopwatch_.s();
 	if (Sec_ == 0)
 	{
-		getData().score += 9999;
+		getData().score += 150;
+		getData().fullRun = true;
 		changeScene(State::Score);
 	}
 

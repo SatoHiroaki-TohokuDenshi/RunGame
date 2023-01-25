@@ -29,7 +29,7 @@ void Score::update()
 void Score::draw() const
 {
 	//点数に沿ってランクSS～Dを表示させる
-	if (PlayScore_ >= 9999)
+	if (getData().fullRun)
 	{
 		RankSS_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"完走おめでとう！").drawAt(EvaluationPos_);
@@ -39,7 +39,7 @@ void Score::draw() const
 			getData().RankSE = false;
 		}
 	}
-	else if (PlayScore_ >= 300)
+	else if (PlayScore_ >= 350)
 	{
 		RankS_.drawAt(RankPos_);
 		FontAsset(U"ScoreScene")(U"たいへんよくできました").drawAt(EvaluationPos_);

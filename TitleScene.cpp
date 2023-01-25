@@ -17,6 +17,7 @@ void Title::update()
 		// ゲームシーンへ
 		getData().score = 0;
 		getData().RankSE = true;
+		getData().fullRun = false;
 		changeScene(State::Play);
 
 	}
