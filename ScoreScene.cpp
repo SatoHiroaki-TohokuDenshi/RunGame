@@ -1,7 +1,7 @@
 ﻿# include "ScoreScene.h"
 
 Score::Score(const InitData& init)
-	: IScene{ init }, PlayScore_(0), RankPos_(400, 250), EvaluationPos_(400, 350),
+	: IScene{ init }, PlayScore_(0), RankPos_(400, 215), EvaluationPos_(400, 305),
 	RankSS_{ U"Images/s+_score.png" }, RankS_{ U"Images/s_score.png" }, RankA_{ U"Images/a_score.png" },
 	RankB_{ U"Images/b_score.png" }, RankC_{ U"Images/c_score.png" }, RankD_{ U"Images/d_score.png" },
 	RankUpper_{U"Audio/Phrase02-1.mp3"}, RankMiddle_{U"Audio/Phrase03-1.mp3"}, RankLower_{U"Audio/Phrase04-1.mp3"}
@@ -90,6 +90,9 @@ void Score::draw() const
 		}
 
 	}
+
+	FontAsset(U"Menu")(U"あなたのスコア").drawAt(400, 380);
+	FontAsset(U"Menu")(getData().score).drawAt(400, 430);
 
 	m_titleButton.draw(ColorF{ 1.0, m_startTransition.value() }).drawFrame(2);
 
