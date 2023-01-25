@@ -79,7 +79,7 @@ void Play::update()
 	{
 		if (ObstaclePos_[i].x < -100)
 		{
-			ObstaclePos_[i].x = 1300; rand() % 100;
+			ObstaclePos_[i].x = 1300 + rand() % 100;
 			ObstaclePos_[i].y = rand() % 400 + 70;
 		}
 		else {
@@ -104,13 +104,18 @@ void Play::update()
 
 
 	//当たり判定の処理
-	const Rect Player(PlayerPos_.x + 40, PlayerPos_.y + 20, 40, 80);
+	const Rect Player(PlayerPos_.x + 35, PlayerPos_.y + 20, 45, 80);
+	const Rect PlayerFoot(PlayerPos_.x + 30, PlayerPos_.y + 100, 40, 20);
 
 	//障害物との判定
 	for (int i = 0; i < 4; i++)
 	{
-		Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).draw();
-		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
+		if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(PlayerFoot))
+		{
+			ObstaclePos_[i].x = 1300 + rand() % 100;
+			ObstaclePos_[i].y = rand() % 400 + 70;
+		}
+		else if (Rect(ObstaclePos_[i].x - 50, ObstaclePos_[i].y - 40, 80, 80).intersects(Player))
 		{
 			DieSE_.play();
 			getData().score += (int)MoveDist_;
@@ -120,7 +125,6 @@ void Play::update()
 	//アイテムとの判定
 	for (int i = 0; i < 5; i++)
 	{
-		Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).draw();
 		if (Circle(MoneyPos_[i].x, MoneyPos_[i].y, 25).intersects(Player))
 		{
 			Moneyhave_.playOneShot();
@@ -165,4 +169,7 @@ void Play::draw() const
 	{
 		Obstacle_.scaled(0.3).drawAt(ObstaclePos_[i]);
 	}
+
+	Rect(PlayerPos_.x + 35, PlayerPos_.y + 20, 45, 80).draw();
+	Rect(PlayerPos_.x + 40, PlayerPos_.y + 100, 30, 20).draw(Color(Palette::Gold));
 }
